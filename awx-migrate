@@ -115,19 +115,19 @@ def awx_get_data():
         awx_data = _awx_get_data()
         _awx_dump_data(awx_data)
 
-    # data fixes, cleanup, bugs
-    for item in awx_data:
-
-        # Bug in awx 1.0.8
-        # https://github.com/ansible/tower-cli/pull/586#issuecomment-432176155
-        # remove objects that only contain
-        # {
-        #   "asset_type": "user"
-        # },
-        # which make `tower-cli send` complains:
-        if item and item.get("asset_type") == "user" and len(item) == 1:
-            # 'Asset of type user is missing identifier field username'
-            awx_data.remove(item)
+#    # data fixes, cleanup, bugs
+#    for item in awx_data:
+#
+#        # Bug in awx 1.0.8
+#        # https://github.com/ansible/tower-cli/pull/586#issuecomment-432176155
+#        # remove objects that only contain
+#        # {
+#        #   "asset_type": "user"
+#        # },
+#        # which make `tower-cli send` complains:
+#        if item and item.get("asset_type") == "user" and len(item) == 1:
+#            # 'Asset of type user is missing identifier field username'
+#            awx_data.remove(item)
 
     return awx_data
 
